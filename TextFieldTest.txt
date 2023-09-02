@@ -1,0 +1,88 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.swing.*;
+import java.awt.Rectangle;
+
+class TextFieldTest extends Jframe
+{
+	JTextField length,width,x,y,z;
+	JButton b;
+	Rectangle rectangle;
+	Graphics2D g2;
+	
+	public void paint(Graphics g)
+   	 {
+       		 g2 = (Graphics2D)g;
+        	 rectangle = new Rectangle(length,width,x,y,z);
+         
+    	 }
+	
+	public TextFieldTest()
+	{
+		SetTitle("Testing length");
+		Container cp=getContentPane();
+		cp.setLayout(new FlowLayout());
+		length=new JTextField("enter length",20);
+		cp.add(length);
+		width=new JTextField("enter Width",20);
+		cp.add(width);
+		x=new JTextField("enter x",20);
+		cp.add(x);
+		y=new JTextField("enter y",20);
+		cp.add(y);
+		z=new JTextField("enter z",20);
+		cp.add(z);
+		b=new JButton("Generate");
+		cp.add(b);
+		ButtonHandler handler=new ButtonHandler();
+		b.addActionListener(handler);		  	
+       		TextFieldListener listener=new TextFieldListener();
+		length.addActionListener(listener);
+		width.addActionListener(listener);
+		x.addActionListener(listener);	
+		y.addActionListener(listener);
+		z.addActionListener(listener);
+		setSize(300,300);
+		SetVisible(true);
+		
+	}
+	
+	private class TextFieldListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			if(e.getSource()==length)
+			{
+				JOptionPane.showMessageDialog(null,"length",length.getText());
+			}
+			if(e.getSource()==width)
+			{
+				JOptionPane.showMessageDialog(null,"width",width.getText());
+			}
+			if(e.getSource()==x)
+			{
+				JOptionPane.showMessageDialog(null,"x",x.getText());
+			}
+			if(e.getSource()==y)
+			{
+				JOptionPane.showMessageDialog(null,"y",y.getText());
+			}
+			if(e.getSource()==z)
+			{
+				JOptionPane.showMessageDialog(null,"z",z.getText());
+			}
+			if(e.getSource()==b)
+			{
+				JOptionPane.showMessageDialog(null,"button");
+			}
+		}
+	}
+	
+	
+	public static void main(String[] args)
+	{
+		TextFieldTest test=new TextFieldTest();
+		test.setDefaultCloseOperation(JFrame.EXIT-ON-CLOSE);
+		
+	}
+}		
